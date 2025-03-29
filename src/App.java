@@ -18,4 +18,3 @@ public class App extends Application {
         launch(args);
     }
 }
-// TODO: Clicked Button effect: Lighting

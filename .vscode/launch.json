@@ -6,7 +6,7 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
-            "vmArgs": "--module-path lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path JavaFX/lib --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }

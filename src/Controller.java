@@ -8,7 +8,6 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
-import javafx.scene.effect.Lighting;
 
 public class Controller {
     private int pScore, cScore = 0;
@@ -73,7 +72,6 @@ public class Controller {
     }
 
     private void play(int choice, Button btn) {
-        btn.setEffect(new Lighting());
         rockBtn.setDisable(true);
         paperBtn.setDisable(true);
         scissorBtn.setDisable(true);
@@ -113,7 +111,6 @@ public class Controller {
             resultMsg.setOpacity(0);
             pImg.setOpacity(0);
             cImg.setOpacity(0);
-            btn.setEffect(null);
             rockBtn.setDisable(false);
             paperBtn.setDisable(false);
             scissorBtn.setDisable(false);

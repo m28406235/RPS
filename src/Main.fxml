@@ -24,12 +24,12 @@
       <Group layoutX="14.0" layoutY="14.0" AnchorPane.topAnchor="80.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Text fx:id="playerTitle" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player: 0">
+            <Text fx:id="pText" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player: 0">
                <font>
                   <Font name="MV Boli" size="18.0" />
                </font>
             </Text>
-            <ImageView fx:id="playerImage" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pImg" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Group>
 
@@ -37,12 +37,12 @@
       <Group layoutX="326.0" layoutY="14.0" AnchorPane.topAnchor="80.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Text fx:id="computerTitle" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer: 0">
+            <Text fx:id="cText" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer: 0">
                <font>
                   <Font name="MV Boli" size="18.0" />
                </font>
             </Text>
-            <ImageView fx:id="computerImage" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cImg" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Group>
 
@@ -56,7 +56,7 @@
       <!-- Buttons for Rock, Paper, Scissors -->
       <ButtonBar buttonMinWidth="150.0" layoutX="25.0" layoutY="652.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="80.0">
          <buttons>
-            <Button fx:id="rockButton" mnemonicParsing="false" onAction="#rock">
+            <Button fx:id="rockBtn" mnemonicParsing="false" onAction="#playRock">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0">
                      <image>
@@ -71,7 +71,7 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <Button fx:id="paperButton" mnemonicParsing="false" onAction="#Paper">
+            <Button fx:id="paperBtn" mnemonicParsing="false" onAction="#playPaper">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0">
                      <image>
@@ -86,7 +86,7 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <Button fx:id="scissorsButton" mnemonicParsing="false" onAction="#Scissors">
+            <Button fx:id="scissorBtn" mnemonicParsing="false" onAction="#playScissors">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0">
                      <image>
@@ -105,7 +105,7 @@
       </ButtonBar>
 
       <!-- Round Winner Message -->
-      <Text fx:id="roundWinnerMessage" fill="WHITE" layoutX="165.0" layoutY="492.0" opacity="0.0">
+      <Text fx:id="resultMsg" fill="WHITE" layoutX="165.0" layoutY="492.0" opacity="0.0">
          <font>
             <Font name="MV Boli" size="36.0" />
          </font>
@@ -115,7 +115,7 @@
       </Text>
 
       <!-- Rematch and Exit Buttons -->
-      <Button fx:id="rematchButton" text="Rematch" layoutX="165.0" layoutY="520.0" prefWidth="100.0" opacity="0.0" onAction="#rematch" />
-      <Button fx:id="exitButton" text="Exit" layoutX="275.0" layoutY="520.0" prefWidth="100.0" opacity="0.0" onAction="#exitGame" />
+      <Button fx:id="rematchBtn" text="Rematch" layoutX="165.0" layoutY="520.0" prefWidth="100.0" opacity="0.0" onAction="#rematch" />
+      <Button fx:id="exitBtn" text="Exit" layoutX="275.0" layoutY="520.0" prefWidth="100.0" opacity="0.0" onAction="#exit" />
    </children>
 </AnchorPane>

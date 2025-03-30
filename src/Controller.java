@@ -11,193 +11,113 @@ import javafx.util.Duration;
 import javafx.scene.effect.Lighting;
 
 public class Controller {
-    private int playerScore, computerScore = 0;
-    private String[] path = { "res/Rock2.png", "res/Paper2.png", "res/Scissors2.png" };
+    private int pScore, cScore = 0;
+    private String[] images = { "res/Rock2.png", "res/Paper2.png", "res/Scissors2.png" };
     @FXML
-    private ImageView playerImage;
+    private ImageView pImg;
     @FXML
-    private ImageView computerImage;
+    private ImageView cImg;
     @FXML
-    private Text playerTitle;
+    private Text pText;
     @FXML
-    private Text computerTitle;
+    private Text cText;
     @FXML
-    private Text roundWinnerMessage;
+    private Text resultMsg;
     @FXML
-    private Button rockButton;
+    private Button rockBtn;
     @FXML
-    private Button paperButton;
+    private Button paperBtn;
     @FXML
-    private Button scissorsButton;
+    private Button scissorBtn;
     @FXML
-    private Button rematchButton;
+    private Button rematchBtn;
     @FXML
-    private Button exitButton;
-
-    private void centerRoundWinnerMessage() {
-        double parentWidth = roundWinnerMessage.getParent().getLayoutBounds().getWidth();
-        double textWidth = roundWinnerMessage.getLayoutBounds().getWidth();
-        roundWinnerMessage.setLayoutX((parentWidth - textWidth) / 2);
-    }
+    private Button exitBtn;
 
     public void rematch(ActionEvent e) {
-        playerScore = 0;
-        computerScore = 0;
-        playerTitle.setText("Player: 0");
-        computerTitle.setText("Computer: 0");
-        roundWinnerMessage.setOpacity(0);
-        rematchButton.setOpacity(0);
-        rematchButton.setDisable(true);
-        exitButton.setOpacity(0);
-        exitButton.setDisable(true);
-        rockButton.setDisable(false);
-        paperButton.setDisable(false);
-        scissorsButton.setDisable(false);
+        pScore = 0;
+        cScore = 0;
+        pText.setText("Player: 0");
+        cText.setText("Computer: 0");
+        resultMsg.setOpacity(0);
+        rematchBtn.setOpacity(0);
+        rematchBtn.setDisable(true);
+        exitBtn.setOpacity(0);
+        exitBtn.setDisable(true);
+        rockBtn.setDisable(false);
+        paperBtn.setDisable(false);
+        scissorBtn.setDisable(false);
     }
 
-    public void exitGame(ActionEvent e) {
+    public void exit(ActionEvent e) {
         System.exit(0);
     }
 
-    private void showEndGameOptions() {
-        rematchButton.setOpacity(1);
-        rematchButton.setDisable(false);
-        exitButton.setOpacity(1);
-        exitButton.setDisable(false);
+    private void showOptions() {
+        rematchBtn.setOpacity(1);
+        rematchBtn.setDisable(false);
+        exitBtn.setOpacity(1);
+        exitBtn.setDisable(false);
     }
 
-    public void rock(ActionEvent e) {
-        rockButton.setEffect(new Lighting());
-        rockButton.setDisable(true);
-        paperButton.setDisable(true);
-        scissorsButton.setDisable(true);
-        playerImage.setOpacity(1);
-        computerImage.setOpacity(1);
-        playerImage.setImage(new Image(new File(path[0]).toURI().toString()));
-        computerImage.setImage(new Image(new File(path[(int) (Math.random() * 3)]).toURI().toString()));
-        String result = GameLogic.winner(
-                new File(playerImage.getImage().getUrl()).getName().replace("2.png", ""),
-                new File(computerImage.getImage().getUrl()).getName().replace("2.png", ""));
-        if (result.equals("Player wins!")) {
-            playerScore++;
-        } else if (result.equals("Computer wins!")) {
-            computerScore++;
-        }
-        playerTitle.setText("Player: " + playerScore);
-        computerTitle.setText("Computer: " + computerScore);
-        if (playerScore == 5 || computerScore == 5) {
-            roundWinnerMessage.setText(playerScore == 5 ? "Player wins the game!" : "Computer wins the game!");
-            centerRoundWinnerMessage();
-            roundWinnerMessage.setOpacity(1);
-            rockButton.setDisable(true);
-            paperButton.setDisable(true);
-            scissorsButton.setDisable(true);
-            showEndGameOptions();
-            return;
-        }
-        roundWinnerMessage.setText(result);
-        centerRoundWinnerMessage();
-        roundWinnerMessage.setOpacity(1);
-        PauseTransition pauseMessage = new PauseTransition(Duration.seconds(1));
-        pauseMessage.setOnFinished(event -> {
-            roundWinnerMessage.setOpacity(0);
-            playerImage.setOpacity(0);
-            computerImage.setOpacity(0);
-            rockButton.setEffect(null);
-            rockButton.setDisable(false);
-            paperButton.setDisable(false);
-            scissorsButton.setDisable(false);
-        });
-        pauseMessage.play();
+    public void playRock(ActionEvent e) {
+        play(0, rockBtn);
     }
 
-    public void Paper(ActionEvent e) {
-        paperButton.setEffect(new Lighting());
-        rockButton.setDisable(true);
-        paperButton.setDisable(true);
-        scissorsButton.setDisable(true);
-        playerImage.setOpacity(1);
-        computerImage.setOpacity(1);
-        playerImage.setImage(new Image(new File(path[1]).toURI().toString()));
-        computerImage.setImage(new Image(new File(path[(int) (Math.random() * 3)]).toURI().toString()));
-        String result = GameLogic.winner(
-                new File(playerImage.getImage().getUrl()).getName().replace("2.png", ""),
-                new File(computerImage.getImage().getUrl()).getName().replace("2.png", ""));
-        if (result.equals("Player wins!")) {
-            playerScore++;
-        } else if (result.equals("Computer wins!")) {
-            computerScore++;
-        }
-        playerTitle.setText("Player: " + playerScore);
-        computerTitle.setText("Computer: " + computerScore);
-        if (playerScore == 5 || computerScore == 5) {
-            roundWinnerMessage.setText(playerScore == 5 ? "Player wins the game!" : "Computer wins the game!");
-            centerRoundWinnerMessage();
-            roundWinnerMessage.setOpacity(1);
-            rockButton.setDisable(true);
-            paperButton.setDisable(true);
-            scissorsButton.setDisable(true);
-            showEndGameOptions();
-            return;
-        }
-        roundWinnerMessage.setText(result);
-        centerRoundWinnerMessage();
-        roundWinnerMessage.setOpacity(1);
-        PauseTransition pauseMessage = new PauseTransition(Duration.seconds(1));
-        pauseMessage.setOnFinished(event -> {
-            roundWinnerMessage.setOpacity(0);
-            playerImage.setOpacity(0);
-            computerImage.setOpacity(0);
-            paperButton.setEffect(null);
-            rockButton.setDisable(false);
-            paperButton.setDisable(false);
-            scissorsButton.setDisable(false);
-        });
-        pauseMessage.play();
+    public void playPaper(ActionEvent e) {
+        play(1, paperBtn);
     }
 
-    public void Scissors(ActionEvent e) {
-        scissorsButton.setEffect(new Lighting());
-        rockButton.setDisable(true);
-        paperButton.setDisable(true);
-        scissorsButton.setDisable(true);
-        playerImage.setOpacity(1);
-        computerImage.setOpacity(1);
-        playerImage.setImage(new Image(new File(path[2]).toURI().toString()));
-        computerImage.setImage(new Image(new File(path[(int) (Math.random() * 3)]).toURI().toString()));
+    public void playScissors(ActionEvent e) {
+        play(2, scissorBtn);
+    }
+
+    private void play(int choice, Button btn) {
+        btn.setEffect(new Lighting());
+        rockBtn.setDisable(true);
+        paperBtn.setDisable(true);
+        scissorBtn.setDisable(true);
+        pImg.setOpacity(1);
+        cImg.setOpacity(1);
+        pImg.setImage(new Image(new File(images[choice]).toURI().toString()));
+        cImg.setImage(new Image(new File(images[(int) (Math.random() * 3)]).toURI().toString()));
         String result = GameLogic.winner(
-                new File(playerImage.getImage().getUrl()).getName().replace("2.png", ""),
-                new File(computerImage.getImage().getUrl()).getName().replace("2.png", ""));
+                new File(pImg.getImage().getUrl()).getName().replace("2.png", ""),
+                new File(cImg.getImage().getUrl()).getName().replace("2.png", ""));
         if (result.equals("Player wins!")) {
-            playerScore++;
+            pScore++;
         } else if (result.equals("Computer wins!")) {
-            computerScore++;
+            cScore++;
         }
-        playerTitle.setText("Player: " + playerScore);
-        computerTitle.setText("Computer: " + computerScore);
-        if (playerScore == 5 || computerScore == 5) {
-            roundWinnerMessage.setText(playerScore == 5 ? "Player wins the game!" : "Computer wins the game!");
-            centerRoundWinnerMessage();
-            roundWinnerMessage.setOpacity(1);
-            rockButton.setDisable(true);
-            paperButton.setDisable(true);
-            scissorsButton.setDisable(true);
-            showEndGameOptions();
+        pText.setText("Player: " + pScore);
+        cText.setText("Computer: " + cScore);
+        if (pScore == 5 || cScore == 5) {
+            resultMsg.setText(pScore == 5 ? "Player wins the game!" : "Computer wins the game!");
+            double parentWidth = resultMsg.getParent().getLayoutBounds().getWidth();
+            double textWidth = resultMsg.getLayoutBounds().getWidth();
+            resultMsg.setLayoutX((parentWidth - textWidth) / 2);
+            resultMsg.setOpacity(1);
+            rockBtn.setDisable(true);
+            paperBtn.setDisable(true);
+            scissorBtn.setDisable(true);
+            showOptions();
             return;
         }
-        roundWinnerMessage.setText(result);
-        centerRoundWinnerMessage();
-        roundWinnerMessage.setOpacity(1);
-        PauseTransition pauseMessage = new PauseTransition(Duration.seconds(1));
-        pauseMessage.setOnFinished(event -> {
-            roundWinnerMessage.setOpacity(0);
-            playerImage.setOpacity(0);
-            computerImage.setOpacity(0);
-            scissorsButton.setEffect(null);
-            rockButton.setDisable(false);
-            paperButton.setDisable(false);
-            scissorsButton.setDisable(false);
+        resultMsg.setText(result);
+        double parentWidth = resultMsg.getParent().getLayoutBounds().getWidth();
+        double textWidth = resultMsg.getLayoutBounds().getWidth();
+        resultMsg.setLayoutX((parentWidth - textWidth) / 2);
+        resultMsg.setOpacity(1);
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        pause.setOnFinished(event -> {
+            resultMsg.setOpacity(0);
+            pImg.setOpacity(0);
+            cImg.setOpacity(0);
+            btn.setEffect(null);
+            rockBtn.setDisable(false);
+            paperBtn.setDisable(false);
+            scissorBtn.setDisable(false);
         });
-        pauseMessage.play();
+        pause.play();
     }
 }

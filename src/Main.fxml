@@ -19,42 +19,73 @@
             <Image url="@../res/Background.jpg" />
          </image>
       </ImageView>
-
-      <!-- Player Section -->
-      <Group layoutX="14.0" layoutY="14.0" AnchorPane.topAnchor="80.0">
+      <Group layoutX="197.0" layoutY="40.0" AnchorPane.topAnchor="15.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Text fx:id="pText" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player: 0">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME WINS">
                <font>
-                  <Font name="MV Boli" size="18.0" />
+                  <Font size="24.0" />
                </font>
             </Text>
-            <ImageView fx:id="pImg" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="scoreText" fill="WHITE" layoutX="48.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 : 0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
          </children>
       </Group>
 
-      <!-- Computer Section -->
-      <Group layoutX="326.0" layoutY="14.0" AnchorPane.topAnchor="80.0">
+      <!-- Player Section -->
+      <Group layoutX="14.0" layoutY="14.0" AnchorPane.topAnchor="120.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Text fx:id="cText" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer: 0">
+            <Text fx:id="pText" fill="WHITE" layoutX="60.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player: 0">
                <font>
                   <Font name="MV Boli" size="18.0" />
                </font>
             </Text>
-            <ImageView fx:id="cImg" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pImg" fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Group>
 
       <!-- VS Image -->
-      <ImageView fitHeight="200.0" fitWidth="104.0" layoutX="218.0" layoutY="14.0" AnchorPane.topAnchor="80.0">
+      <ImageView fitHeight="200.0" fitWidth="104.0" layoutX="218.0" layoutY="85.0" AnchorPane.topAnchor="120.0">
          <image>
             <Image url="@../res/VS.png" />
          </image>
       </ImageView>
 
+      <!-- Computer Section -->
+      <Group layoutX="326.0" layoutY="14.0" AnchorPane.topAnchor="120.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Text fx:id="cText" fill="WHITE" layoutX="45.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer: 0">
+               <font>
+                  <Font name="MV Boli" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="cImg" fitHeight="150.0" fitWidth="200.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Group>
+
+      <!-- Round Winner Message -->
+      <Text fx:id="resultMsg" fill="WHITE" layoutX="109.0" layoutY="492.0" opacity="0.0">
+         <font>
+            <Font name="MV Boli" size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Text>
+
+      <!-- Rematch and Exit Buttons -->
+      <Button fx:id="rematchBtn" layoutX="147.0" layoutY="508.0" onAction="#rematch" opacity="0.0" prefWidth="100.0" text="Rematch" />
+      <Button fx:id="exitBtn" layoutX="276.0" layoutY="508.0" onAction="#exit" opacity="0.0" prefWidth="100.0" text="Exit">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+
       <!-- Buttons for Rock, Paper, Scissors -->
-      <ButtonBar buttonMinWidth="150.0" layoutX="25.0" layoutY="652.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="80.0">
+      <ButtonBar buttonMinWidth="150.0" layoutX="25.0" layoutY="652.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="85.0">
          <buttons>
             <Button fx:id="rockBtn" mnemonicParsing="false" onAction="#playRock">
                <graphic>
@@ -103,19 +134,5 @@
             </Button>
          </buttons>
       </ButtonBar>
-
-      <!-- Round Winner Message -->
-      <Text fx:id="resultMsg" fill="WHITE" layoutX="165.0" layoutY="492.0" opacity="0.0">
-         <font>
-            <Font name="MV Boli" size="36.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </Text>
-
-      <!-- Rematch and Exit Buttons -->
-      <Button fx:id="rematchBtn" text="Rematch" layoutX="165.0" layoutY="520.0" prefWidth="100.0" opacity="0.0" onAction="#rematch" />
-      <Button fx:id="exitBtn" text="Exit" layoutX="275.0" layoutY="520.0" prefWidth="100.0" opacity="0.0" onAction="#exit" />
    </children>
 </AnchorPane>

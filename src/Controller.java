@@ -10,7 +10,7 @@ import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 
 public class Controller {
-    private int pScore, cScore = 0;
+    private int pScore, cScore = 0, pWins, cWins = 0;
     private String[] images = { "res/Rock2.png", "res/Paper2.png", "res/Scissors2.png" };
     @FXML
     private ImageView pImg;
@@ -22,6 +22,8 @@ public class Controller {
     private Text cText;
     @FXML
     private Text resultMsg;
+    @FXML
+    private Text scoreText;
     @FXML
     private Button rockBtn;
     @FXML
@@ -38,6 +40,7 @@ public class Controller {
         cScore = 0;
         pText.setText("Player: 0");
         cText.setText("Computer: 0");
+        scoreText.setText(pWins + " : " + cWins);
         resultMsg.setOpacity(0);
         rematchBtn.setOpacity(0);
         rematchBtn.setDisable(true);
@@ -90,7 +93,13 @@ public class Controller {
         pText.setText("Player: " + pScore);
         cText.setText("Computer: " + cScore);
         if (pScore == 5 || cScore == 5) {
-            resultMsg.setText(pScore == 5 ? "Player wins the game!" : "Computer wins the game!");
+            if (pScore == 5) {
+                resultMsg.setText("Player wins the game!");
+                pWins++;
+            } else {
+                resultMsg.setText("Computer wins the game!");
+                cWins++;
+            }
             double parentWidth = resultMsg.getParent().getLayoutBounds().getWidth();
             double textWidth = resultMsg.getLayoutBounds().getWidth();
             resultMsg.setLayoutX((parentWidth - textWidth) / 2);
